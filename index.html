@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>ASL Webcam</title>
+</head>
+<body>
+    <img id="imageElement"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script>
+        const socket = io.connect('http://localhost:3000');
+        socket.on('image', (image) => {
+            const imageElement = document.getElementById('imageElement');
+            imageElement.src = `data:image/jpeg;base64,${image}`;
+        });
+    </script>
+
+    <style type="text/css">
+        html {
+            background-color: #A4E8F0;
+        }
+        #imageElement {
+            border:solid 5px black;
+        }
+
+    </style>
+
+
+
+</body>
+</html>
